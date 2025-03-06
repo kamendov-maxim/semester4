@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Fibonacci.fs" />
+    <Compile Include="Factorial.fs" />
+    <Compile Include="ReverseList.fs" />
+    <Compile Include="FindNumber.fs" />
+    <Compile Include="PowerList.fs" />
+  </ItemGroup>
+
+</Project>
