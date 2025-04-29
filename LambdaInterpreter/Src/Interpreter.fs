@@ -1,10 +1,12 @@
 module LambdaInterpreter
 
+// Lambda expression can either be a variable or lambda abstraction or application
 type Expression =
     | Var of string
     | Abstraction of string * Expression
     | Application of Expression * Expression
 
+// Function to find all free variables in the lambda expression
 let FindFreeVars expr =
     let rec findFreeVars expr =
         match expr with
@@ -14,6 +16,7 @@ let FindFreeVars expr =
 
     findFreeVars expr
 
+// Function to find all bound variables
 let FindBoundVars expr =
     let rec loop expr =
         match expr with
@@ -23,6 +26,7 @@ let FindBoundVars expr =
 
     loop expr
 
+// Function to perform alfa conversion that creates new variable name that does not appear in usedVars
 let AlphaConversion var usedVars =
     let rec loop n =
         let newVar = $"{var}{n}"
@@ -34,6 +38,7 @@ let AlphaConversion var usedVars =
 
     if Set.contains var usedVars then loop 0 else var
 
+// Function to perform substitution of "what" expression on all places where x appears in "where" expression
 let Substitude var what where =
     let rec subst var what where =
         match where with
@@ -53,6 +58,7 @@ let Substitude var what where =
 
     subst var what where
 
+// Function that performs normal reduction (reduces the leftmost redex)
 let Reduce expression =
     let rec loop expression =
         match expression with
