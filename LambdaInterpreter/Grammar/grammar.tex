@@ -1,0 +1,27 @@
+\documentclass{article}
+
+\usepackage{fontspec}
+\setmainfont{CMU Serif}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb, scalerel, amsfonts, mathtools}
+
+\begin{document}
+
+\section{Грамматика}
+\begin{align*}
+<Program>       &::= <Statement> \mid <Statement>\textbackslash n<Program> \\
+<Statement>     &::= \texttt{let} <Spaces> <Var> <Spaces> \texttt{=} <Spaces> <Term> \mid <Term> \\
+<Term>          &::= <Application> \mid <TermR> \\
+<Application>   &::= <TermR> <Spaces> <Term> \\
+<TermR>         &::= <Abstraction> \mid <Var> \mid \texttt{(}<Term>\texttt{)} \\
+<Abstraction>   &::= \texttt{\textbackslash} <VarList> \texttt{.} <Term> \\
+<VarList>       &::= <Var> \mid <Var> <Spaces> <VarList> \\
+<Var>           &::= <Letter> \mid <Letter><Var> \\
+<Spaces>        &::= \texttt{ } \mid \texttt{ }<Spaces> \\
+<Letter>        &::= [a-zA-Z]
+\end{align*}
+\textbf{Стартовый нетерминал:} <Program>
+
+\end{document}
