@@ -3,11 +3,11 @@ module MiniCrawler
 open System.Net.Http
 open System.Text.RegularExpressions
 
-let private pattern =
-    @"(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})"
+let private pattern = @"<a\s+[^>]*?href\s*=\s*[""'](http[^""']*)[""'][^>]*>"
 
 type Result = { Url: string; Size: int }
 
+// Get html of the page behind the link
 let private getHtml (client: HttpClient) (url: string) =
     async {
         try
@@ -17,6 +17,7 @@ let private getHtml (client: HttpClient) (url: string) =
             return None
     }
 
+// Parse links on a html page with regular expression
 let private parseLinks (html: string) =
     Regex.Matches(html, pattern)
     |> Seq.cast<Match>
@@ -24,7 +25,8 @@ let private parseLinks (html: string) =
     |> Seq.distinct
     |> List.ofSeq
 
-let private getSize (client: HttpClient) (url: string) =
+// Get size of a page behind url and wrap results into record
+let internal getSize (client: HttpClient) (url: string) =
     async {
         let! page = getHtml client url
 
@@ -33,10 +35,9 @@ let private getSize (client: HttpClient) (url: string) =
         | Some html -> return { Url = url; Size = html.Length }
     }
 
-
-let analyzePage (url: string) =
+// crawl is a wrapper for this function. It is needed for tests with mock HttpClient
+let internal analyzePage (client: HttpClient) (url: string) =
     async {
-        use client = new HttpClient()
         let! mainPage = getHtml client url
 
         match mainPage with
@@ -44,4 +45,13 @@ let analyzePage (url: string) =
         | Some html ->
             let! result = html |> parseLinks |> List.map (getSize client) |> Async.Parallel
             return result
+    }
+
+// Download page behind a url, parse all links on it, download them and print sizes of them in characters
+let crawl (url: string) =
+    use client = new HttpClient()
+
+    async {
+        let! results = analyzePage client url
+        return results
     }
