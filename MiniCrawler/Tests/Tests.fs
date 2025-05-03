@@ -41,7 +41,7 @@ let ``analyzePage should process mocked links`` () =
         results
         |> Array.iter (fun r ->
             r.Url |> should startWith "http://test"
-            r.Size |> should equal -1)
+            r.Size |> should greaterThan 0)
     }
     |> Async.RunSynchronously
 
@@ -64,8 +64,6 @@ let ``should process multiple page sizes`` () =
             { new HttpMessageHandler() with
                 override _.SendAsync(request, _) =
                     let content =
-                        printfn "HANDLERR"
-                        printfn "REQUEST: %s" request.RequestUri.AbsoluteUri
 
                         match request.RequestUri.AbsoluteUri with
                         | "http://main.com/" -> "<a href='http://page1.com'></a><a href='http://page2.com'></a>"
