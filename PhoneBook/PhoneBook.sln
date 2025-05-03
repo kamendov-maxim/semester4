@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PhoneBook", "Src\PhoneBook.fsproj", "{B359DE64-599B-4454-AF23-4694FA741A83}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tests", "Tests\Tests.fsproj", "{37C494CC-9AAC-4991-BD77-07659BC4669D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B359DE64-599B-4454-AF23-4694FA741A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B359DE64-599B-4454-AF23-4694FA741A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B359DE64-599B-4454-AF23-4694FA741A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B359DE64-599B-4454-AF23-4694FA741A83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37C494CC-9AAC-4991-BD77-07659BC4669D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37C494CC-9AAC-4991-BD77-07659BC4669D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37C494CC-9AAC-4991-BD77-07659BC4669D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37C494CC-9AAC-4991-BD77-07659BC4669D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
