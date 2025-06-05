@@ -1,0 +1,23 @@
+\documentclass{article}
+
+\usepackage{fontspec}
+\setmainfont{CMU Serif}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb, scalerel, amsfonts, mathtools}
+
+\begin{document}
+\begin{math}
+\\
+S = \lambda x y z.x z (y z)\\
+K = \lambda x y.x\\
+S K K = (\lambda x y z.(x z)\ (y z))\ (\lambda x y.x)\ (\lambda x y.x) = \\
+= (\lambda y z.((\lambda x y.x) z)\ (y z))\ (\lambda x y.x) = \\
+= \lambda z.((\lambda x y.x) z)\ ((\lambda x y.x) z) = \\
+= \lambda z.(\lambda y.z)\ ((\lambda x y.x) z) = \\
+= \lambda z.(\lambda y.z)\ (\lambda y.z) = \\
+= \lambda z.z \\
+\end{math} 
+\end{document}
+
