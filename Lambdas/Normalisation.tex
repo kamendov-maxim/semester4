@@ -1,0 +1,20 @@
+\documentclass{article}
+
+\usepackage{fontspec}
+\setmainfont{CMU Serif}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb, scalerel, amsfonts, mathtools}
+
+\begin{document}
+\begin{math}
+\\
+((\lambda a.(\lambda b.b b) (\lambda b.b b)) b) ((\lambda c.(c b)) (\lambda a.a)) = \\
+= (\lambda y.\lambda z.((\lambda x.\lambda y.x)\ z)\ (y\ z))\ (\lambda x.\lambda y.x) = \\
+= (\lambda z.((\lambda x.\lambda y.x)\ z)\ ((\lambda x.\lambda y.x)\ z)) = \\
+= (\lambda z.(\lambda y.z)\ (\lambda y.z)) = \\
+= (\lambda z.(\lambda y.z)\ (\lambda y.z)) = \\
+= (\lambda z.z) = I
+\end{math} 
+\end{document}
