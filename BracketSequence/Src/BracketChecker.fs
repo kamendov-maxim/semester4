@@ -18,6 +18,7 @@ let checker str =
     let rec loop stack str = 
         match stack, Seq.tryHead str with
         | [], None -> true
+        | _, None -> false
         | [], Some y when checkIfOpeningOrClose y false -> false
         | _, Some y when checkIfOpeningOrClose y true -> loop (y::stack) (Seq.tail str)
         | x, Some y when checkIfOpeningOrClose y false ->
@@ -25,5 +26,6 @@ let checker str =
                 loop (List.tail x) (Seq.tail str)
             else
                 false
+        | x, Some y -> failwith "All possible patterns were covered"
 
     loop [] str
