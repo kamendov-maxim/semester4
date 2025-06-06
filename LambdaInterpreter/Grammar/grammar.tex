@@ -1,0 +1,48 @@
+\documentclass{article}
+
+\usepackage{fontspec}
+\setmainfont{CMU Serif}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb, scalerel, amsfonts, mathtools}
+
+\begin{document}
+
+\section{Грамматика}
+\begin{align*}
+<Program>       &::= <Statement> \mid <Statement>\textbackslash n<Program> \\
+<Statement>     &::= \texttt{let} <Spaces> <Var> <Spaces> \texttt{=} <Spaces> <Term> \mid <Term> \\
+<Term>          &::= <Application> \mid <TermR> \\
+<Application>   &::= <TermR> <Spaces> <Term> \\
+<TermR>         &::= <Abstraction> \mid <Var> \mid \texttt{(}<Term>\texttt{)} \\
+<Abstraction>   &::= \texttt{\textbackslash} <VarList> \texttt{.} <Term> \\
+<VarList>       &::= <Var> \mid <Var> <Spaces> <VarList> \\
+<Var>           &::= <Letter> \mid <Letter><Var> \\
+<Spaces>        &::= \texttt{ } \mid \texttt{ }<Spaces> \\
+<Letter>        &::= [a-zA-Z]
+\end{align*}
+\textbf{Стартовый нетерминал:} <Program>
+
+\section{Примеры}
+\subsection{let K = \textbackslash x y.x}
+\begin{align*}
+<Program>       &\Rightarrow <Statement> \\
+&\Rightarrow \texttt{let} <Spaces> <Var> <Spaces> \texttt{=} <Spaces> <Term> \\
+&\Rightarrow \texttt{let } K \texttt{ = } <Abstraction> \\
+&\Rightarrow \texttt{let } K \texttt{ = } \texttt{\textbackslash} <VarList> \texttt{.} <Term> \\
+&\Rightarrow \texttt{let } K \texttt{ = } \texttt{\textbackslash} x\ y \texttt{.} x
+\end{align*}
+
+\subsection{S K K}
+\begin{align*}
+<Program>       &\Rightarrow <Statement> \\
+&\Rightarrow <Application> \\
+&\Rightarrow <TermR>\ <Term> \\
+&\Rightarrow S\ <Application> \\
+&\Rightarrow S\ <TermR>\ <Term> \\
+&\Rightarrow S\ K\ K
+\end{align*}
+
+
+\end{document}
