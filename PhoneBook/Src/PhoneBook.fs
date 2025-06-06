@@ -20,9 +20,15 @@ let getNumber (book: PhoneBook) number =
 let Empty: PhoneBook = []
 
 let print (writer: System.IO.StreamWriter) (book: PhoneBook) =
+
     let rec loop (writer: System.IO.StreamWriter) (book: PhoneBook) =
         if not book.IsEmpty then
-            writer.WriteLine $"Name: {book.Head.Name.ToString()} Number: {book.Head.Number.ToString()}"
+            // writer.WriteLine $"Name: {book.Head.Name.ToString()}, Number: {book.Head.Number.ToString()}"
+            if book.Tail.IsEmpty then
+                writer.Write $"Name: {book.Head.Name.ToString()}, Number: {book.Head.Number.ToString()}"
+            else
+                writer.WriteLine $"Name: {book.Head.Name.ToString()}, Number: {book.Head.Number.ToString()}"
+            writer.Flush()
             loop writer book.Tail
 
     loop writer book

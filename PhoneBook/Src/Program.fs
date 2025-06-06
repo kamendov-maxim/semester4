@@ -5,6 +5,7 @@ open CommandRunner
 
 
 let rec loop (book: PhoneBook.PhoneBook) =
+    Console.Write("> ")
     match Console.ReadLine() |> parse with
     | None ->
         Console.WriteLine "Unsupported command"
@@ -16,6 +17,6 @@ let rec loop (book: PhoneBook.PhoneBook) =
 
 [<EntryPoint>]
 let main _ =
-    Console.Write helpMessage
+    Console.Write ("> " + helpMessage)
     loop []
     0

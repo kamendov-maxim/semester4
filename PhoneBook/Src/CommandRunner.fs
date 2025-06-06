@@ -37,6 +37,8 @@ let helpMessage =
     + "read <path to file> - read the phone book from file\n"
     + "print - print all entries to stdout\n"
 
+
+
 let runCommand (book: PhoneBook.PhoneBook) (command: Command) =
     match command with
     | AddEntry text ->
@@ -46,10 +48,8 @@ let runCommand (book: PhoneBook.PhoneBook) (command: Command) =
             text |> Seq.skipWhile Char.IsDigit |> Seq.skipWhile ((=) ' ') |> String.Concat
 
         let newbook = PhoneBook.addEntry book (PhoneBook.Entry(namePart, numberPart))
-        Console.WriteLine "Entry was added"
         newbook, "Entry was added"
     | Exit ->
-        Console.WriteLine "Leaving the phonebook..."
         exit 0
     | GetNumber text ->
         match book |> Seq.tryFind (fun x -> text = x.Name) with
@@ -60,8 +60,8 @@ let runCommand (book: PhoneBook.PhoneBook) (command: Command) =
         | None -> book, "No such entry in the book"
         | Some(Value = x: PhoneBook.Entry) -> book, $"{x.Number} is a number of {x.Name}"
     | Print ->
-        PhoneBook.print (new IO.StreamWriter(Console.OpenStandardOutput())) book
-        book, ""
+        PhoneBook.print (new IO.StreamWriter(Console.OpenStandardOutput())) book |> ignore
+        book, "" 
     | Save text ->
         use writer = new IO.StreamWriter(text.ToString())
         PhoneBook.print writer book
