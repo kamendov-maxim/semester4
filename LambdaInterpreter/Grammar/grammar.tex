@@ -24,4 +24,25 @@
 \end{align*}
 \textbf{Стартовый нетерминал:} <Program>
 
+\section{Примеры}
+\subsection{let K = \textbackslash x y.x}
+\begin{align*}
+<Program>       &\Rightarrow <Statement> \\
+&\Rightarrow \texttt{let} <Spaces> <Var> <Spaces> \texttt{=} <Spaces> <Term> \\
+&\Rightarrow \texttt{let } K \texttt{ = } <Abstraction> \\
+&\Rightarrow \texttt{let } K \texttt{ = } \texttt{\textbackslash} <VarList> \texttt{.} <Term> \\
+&\Rightarrow \texttt{let } K \texttt{ = } \texttt{\textbackslash} x\ y \texttt{.} x
+\end{align*}
+
+\subsection{S K K}
+\begin{align*}
+<Program>       &\Rightarrow <Statement> \\
+&\Rightarrow <Application> \\
+&\Rightarrow <TermR>\ <Term> \\
+&\Rightarrow S\ <Application> \\
+&\Rightarrow S\ <TermR>\ <Term> \\
+&\Rightarrow S\ K\ K
+\end{align*}
+
+
 \end{document}
